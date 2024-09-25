@@ -6,7 +6,7 @@
 /*   By: najeuneh < najeuneh@student.s19.be >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 16:41:21 by najeuneh          #+#    #+#             */
-/*   Updated: 2024/09/24 20:02:15 by najeuneh         ###   ########.fr       */
+/*   Updated: 2024/09/25 15:22:16 by najeuneh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,13 @@ void	ft_check_eat(t_data *data)
 
 void	free_all(t_data *data, t_philo *philo)
 {
-	pthread_mutex_destroy(&data->write_lock);
-	pthread_mutex_destroy(data->fork);
-	pthread_mutex_destroy(&data->moment_death);
-	free(data->fork);
-	free(philo);
-	free(data);
+		pthread_mutex_destroy(&data->write_lock);
+		pthread_mutex_destroy(data->fork);
+		pthread_mutex_destroy(&data->moment_death);
+	if (data->fork != NULL)
+		free(data->fork);
+	if (philo != NULL)
+		free(philo);
+	if (data != NULL)
+		free(data);
 }
